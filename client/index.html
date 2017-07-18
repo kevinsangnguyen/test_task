@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="board">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel='stylesheet' media='screen and (min-width: 992px)' href='./css/max.css' />
+  <link rel='stylesheet' media='screen and (min-width: 768px) and (max-width:991px)' href='./css/mid.css' />
+  <link rel='stylesheet' media='screen and (min-width: 320px) and (max-width:767px)' href='./css/min.css' />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+
+  <script type='text/javascript'>
+	  var board = angular.module('board', ['ngRoute']);
+    //routing
+    board.config(function ($routeProvider, $locationProvider) {
+      $routeProvider
+        .when('/',{
+            templateUrl: 'partials/menu1.html'
+        })
+        .when('/menu1',{
+            templateUrl: 'partials/menu1.html'
+        })
+        .when('/menu2',{
+            templateUrl: 'partials/menu2.html'
+        })
+        .when('/menu3',{
+            templateUrl: 'partials/menu3.html'
+        })
+        .when('/menu4',{
+            templateUrl: 'partials/menu4.html'
+        })
+        .when('/menu5',{
+            templateUrl: 'partials/menu5.html'
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+    });
+  </script>
+
+  <script type="text/javascript" src="./controllers/main.js"></script>
+
+
+  <title>AnchorFree</title>
+</head>
+<body ng-controller="Main">
+  <div class="main_body">
+    <div class="header">
+      <h1>LOGO</h1>
+      <ul>
+        <li><a href="/#menu1"  ng-click="change(1)">Menu 1</a></li>
+        <li><a href="/#menu2" ng-click="change(2)">Menu 2</a></li>
+        <li><a href="/#menu3" ng-click="change(3)">Menu 3</a></li>
+      </ul>
+    </div>
+
+    <div class="left_nav">
+      <ul ng-init="current_page = 1">
+        <li ng-class="{active: current_page == 1}"><a href="/#menu1" ng-click="change(1)">Menu 1</a></li>
+        <li ng-class="{active: current_page == 2}"><a href="/#menu2" ng-click="change(2)">Menu 2</a></li>
+        <li ng-class="{active: current_page == 3}"><a href="/#menu3" ng-click="change(3)">Menu 3</a></li>
+        <li ng-class="{active: current_page == 4}"><a href="/#menu4" ng-click="change(4)">Menu 4</a></li>
+        <li ng-class="{active: current_page == 5}"><a href="/#menu5" ng-click="change(5)">Menu 5</a></li>
+      </ul>
+    </div>
+
+    <!--  content -->
+    <div ng-view="" class="content"></div>
+
+    <div class="right_side">
+      <h2>Right side</h2>
+      <a href="">Title 1</a>
+      <p>Description</p>
+      <a href="">Title 2</a>
+      <p>Description</p>
+      <a href="">Title 3</a>
+      <p>Description</p>
+    </div>
+  </div>
+</body>
+</html>
